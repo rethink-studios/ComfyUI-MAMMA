@@ -1,0 +1,6 @@
+@echo off
+REM Copy to set_mamma_repo.bat and edit paths for your machine.
+REM Then run: call scripts\set_mamma_repo.bat before other scripts.
+
+set MAMMA_REPO=C:\path\to\mamma
+set MAMMA_FOOTAGE=C:\path\to\mamma_footage

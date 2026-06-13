@@ -1,0 +1,16 @@
+[project]
+name = "comfyui-mamma"
+version = "0.1.0"
+description = "ComfyUI nodes for MAMMA multi-camera motion capture (SMPL-X fitting from video)"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+
+[project.urls]
+Repository = "https://github.com/rethink-studios/ComfyUI-MAMMA"
+"MAMMA upstream" = "https://github.com/cuevhv/mamma"
+
+[tool.comfy]
+PublisherId = "rethink-studios"
+DisplayName = "ComfyUI-MAMMA"
+Icon = ""

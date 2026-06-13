@@ -1,0 +1,31 @@
+# Self-contained micromamba runtime (created by install_env.py) — NEVER commit
+.runtime/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+*.egg-info/
+dist/
+build/
+
+# Partial downloads
+*.part
+
+# Secrets / local config (use env vars or interactive prompts instead)
+.env
+.env.local
+*.credentials
+scripts/set_mamma_repo.bat
+
+# Patch backups created in the user's MAMMA clone (not in this repo)
+*.orig
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
