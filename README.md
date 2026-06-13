@@ -3,6 +3,11 @@
 ComfyUI custom nodes for [MAMMA](https://github.com/cuevhv/mamma) — markerless
 multi-camera motion capture (SMPL-X body fitting from synchronized video).
 
+**Export directly to VFX pipelines** — animated **USD** (`.usdc`) with per-frame
+body meshes, preset orientation and units for **Maya**, **Houdini**, **Blender**,
+and **Unreal Engine**. One file, time-sampled geometry, ready to reference in a
+shot or stage without a manual retarget pass.
+
 Runs MAMMA in a **self-contained Python environment** (micromamba + CUDA 12.4 +
 PyTorch 2.5) managed by this node pack. Your ComfyUI install is not modified.
 
@@ -101,7 +106,7 @@ Or queue **MAMMA Doctor (Preflight)** in ComfyUI.
 | MAMMA Build Footage (from Videos) | Arrange videos into MAMMA's multi-camera layout |
 | MAMMA Calibration | Validate / write camera calibration YAML |
 | MAMMA Run Motion Capture | Full pipeline: masks → 2D → 3D → visualization |
-| MAMMA Export Mesh Sequence | Animated USD (default) or per-frame OBJ/PLY |
+| MAMMA Export Mesh Sequence | **USD** (animated `.usdc`) or per-frame OBJ/PLY — DCC presets for Maya, Houdini, Blender, Unreal |
 | MAMMA Load Preview Video | Load rendered preview |
 | MAMMA Load Overlay Video / List Overlay Videos | Per-camera overlay renders |
 
@@ -111,14 +116,48 @@ After loading the workflow, set **mamma_repo** on **MAMMA Run** and paths on the
 video loader nodes. Use **`full.yaml`** for all frames; **`quick.yaml`** is a
 30-frame demo only.
 
-## Animated export
+## VFX & DCC export (USD)
+
+The **MAMMA Export Mesh Sequence** node turns `ma_3d` results into production-ready
+geometry. **USD is the default** — the industry-standard scene format for VFX and
+real-time pipelines (Pixar USD, Solaris, Maya USD, Houdini LOPs, Blender, Unreal).
 
 Connect **ma_3d_dir** from **MAMMA Run** to **MAMMA Export Mesh Sequence**.
 
-- **format**: `usd` writes one `mamma_motion.usdc` with per-frame vertex animation
-- **target_app**: `maya`, `houdini`, `blender`, `unreal`, or `raw` (orientation/units)
-- **fps**: playback rate for USD time samples
+### Why USD
+
+- **One animated file** — `mamma_motion.usdc` holds every tracked person with
+  time-sampled vertex positions (no folder of thousands of OBJs)
+- **Stage-native** — reference the cache on a USD stage alongside cameras, sets,
+  and lighting; swap versions without re-importing
+- **Pipeline-friendly** — same format used across film, TV, and games; ideal for
+  comp, layout, and previz handoff
+
+### DCC presets (`target_app`)
+
+Each preset bakes the **axis orientation** and **units** the destination app
+expects so you don't double-convert on import:
+
+| Preset | App | Up axis | Units |
+|--------|-----|---------|-------|
+| `maya` | Autodesk Maya | Y-up | centimetres |
+| `houdini` | SideFX Houdini | Y-up | metres |
+| `blender` | Blender | Z-up | metres |
+| `unreal` | Unreal Engine | Z-up | centimetres |
+| `raw` | Custom / scripting | Z-up (MAMMA native) | metres |
+
+Typical workflow: run capture → export with `format: usd` and `target_app: maya`
+(or `houdini`, etc.) → reference `mamma_motion.usdc` in your shot.
+
+### Export options
+
+- **format**: `usd` (default) — single animated USD cache; `obj` / `ply` — per-frame
+  sequences for tools that don't read USD
+- **fps**: playback rate baked into USD time samples (match source footage)
 - **every_nth**: subsample frames (1 = every frame)
+
+Output example: `mamma_motion.usdc` with one `UsdGeomMesh` per person, vertex
+animation on the stage timeline.
 
 ## Calibration
 
