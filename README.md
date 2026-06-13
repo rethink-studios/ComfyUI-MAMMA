@@ -1,5 +1,22 @@
 # ComfyUI-MAMMA
 
+> [!WARNING]
+> **Read before you `git clone`**
+>
+> This repo is **not plug-and-play**. After install (~20–40 min, Windows + NVIDIA GPU),
+> you must **register two free accounts** and download **license-gated model weights**
+> that cannot be bundled here:
+>
+> | Site | What it unlocks |
+> |------|-----------------|
+> | [mamma.is.tue.mpg.de](https://mamma.is.tue.mpg.de/) | Landmark network + vertex data |
+> | [smpl-x.is.tue.mpg.de](https://smpl-x.is.tue.mpg.de/) | SMPL-X body model |
+>
+> Then run `scripts\download_gated_weights.bat` and `scripts\doctor.bat` (PASS required).
+>
+> **Step-by-step guide: [GATED_WEIGHTS.md](GATED_WEIGHTS.md)** — also under **Issues** →
+> *Download gated weights*.
+
 ComfyUI custom nodes for [MAMMA](https://github.com/cuevhv/mamma) — markerless
 multi-camera motion capture (SMPL-X body fitting from synchronized video).
 
@@ -12,19 +29,6 @@ Runs MAMMA in a **self-contained Python environment** (micromamba + CUDA 12.4 +
 PyTorch 2.5) managed by this node pack. Your ComfyUI install is not modified.
 
 **Windows only** (NVIDIA GPU). Linux support is not tested with this installer.
-
----
-
-> ### Required after install: gated weights
->
-> **`install_env.bat` alone is not enough.** You must register (free) at
-> [MAMMA](https://mamma.is.tue.mpg.de/) and [SMPL-X](https://smpl-x.is.tue.mpg.de/),
-> then run `scripts\download_gated_weights.bat`.
->
-> **Full walkthrough (screenshots-level detail): [GATED_WEIGHTS.md](GATED_WEIGHTS.md)**  
-> Also linked from the repo **Issues** tab → *Download gated weights*.
-
----
 
 ## Quick start
 
@@ -93,13 +97,13 @@ Public weights (SAM2, YOLO, CLIP) — no account:
 scripts\download_public_weights.bat
 ```
 
-Gated weights (landmark checkpoint, SMPL-X) — requires registration:
+Gated weights (landmark checkpoint, SMPL-X) — **required**, separate registrations:
 
 ```bat
 scripts\download_gated_weights.bat
 ```
 
-Full details: [docs/WEIGHTS.md](docs/WEIGHTS.md)
+**Full walkthrough: [GATED_WEIGHTS.md](GATED_WEIGHTS.md)** · Inventory: [docs/WEIGHTS.md](docs/WEIGHTS.md)
 
 ### 4. Verify
 
@@ -181,13 +185,6 @@ and write the file your run will use.
 ## Troubleshooting
 
 See [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md).
-
-## Before pushing to GitHub
-
-- `.runtime/` is local-only (~15 GB micromamba env) — never commit it
-- Copy `scripts\set_mamma_repo.bat.example` → `set_mamma_repo.bat` for local paths (gitignored)
-- Do not save workflows with password fields filled — see [SECURITY.md](SECURITY.md)
-- Run `scripts\verify_clean.bat` before `git push`
 
 ## License
 
