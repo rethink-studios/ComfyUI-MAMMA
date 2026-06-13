@@ -1,5 +1,8 @@
 # Model weights
 
+> **New here?** Use the step-by-step guide: **[GATED_WEIGHTS.md](../GATED_WEIGHTS.md)**  
+> (registration, download script, verification, troubleshooting)
+
 MAMMA needs several checkpoint files under `<mamma_repo>/data/`. Some are
 downloaded automatically; two require **free registration** on separate sites.
 

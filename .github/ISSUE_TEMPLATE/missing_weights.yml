@@ -1,0 +1,43 @@
+name: Missing weights / doctor fails
+description: Pipeline fails because gated weights were not downloaded
+title: "Weights: "
+labels: ["weights", "help wanted"]
+body:
+  - type: markdown
+    value: |
+      **Most installs fail here.** `install_env.bat` does not download gated weights.
+      Follow **[GATED_WEIGHTS.md](https://github.com/rethink-studios/ComfyUI-MAMMA/blob/main/GATED_WEIGHTS.md)** first.
+
+      You need **two** free accounts:
+      - https://mamma.is.tue.mpg.de/
+      - https://smpl-x.is.tue.mpg.de/
+
+      Then run `scripts\download_gated_weights.bat` and `scripts\doctor.bat`.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I registered at mamma.is.tue.mpg.de and accepted the license
+        - label: I registered at smpl-x.is.tue.mpg.de and accepted the license
+        - label: I ran scripts\download_gated_weights.bat (not just install_env.bat)
+        - label: I ran scripts\doctor.bat
+    validations:
+      required: false
+
+  - type: input
+    id: mamma_repo
+    attributes:
+      label: MAMMA repo path
+      placeholder: C:\dev\mamma
+    validations:
+      required: false
+
+  - type: textarea
+    id: doctor_output
+    attributes:
+      label: doctor.bat or Install node output
+      description: Paste the last ~30 lines
+    validations:
+      required: false

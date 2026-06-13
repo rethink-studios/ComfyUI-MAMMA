@@ -13,13 +13,26 @@ PyTorch 2.5) managed by this node pack. Your ComfyUI install is not modified.
 
 **Windows only** (NVIDIA GPU). Linux support is not tested with this installer.
 
+---
+
+> ### Required after install: gated weights
+>
+> **`install_env.bat` alone is not enough.** You must register (free) at
+> [MAMMA](https://mamma.is.tue.mpg.de/) and [SMPL-X](https://smpl-x.is.tue.mpg.de/),
+> then run `scripts\download_gated_weights.bat`.
+>
+> **Full walkthrough (screenshots-level detail): [GATED_WEIGHTS.md](GATED_WEIGHTS.md)**  
+> Also linked from the repo **Issues** tab → *Download gated weights*.
+
+---
+
 ## Quick start
 
 1. Clone this repo into `ComfyUI/custom_nodes/ComfyUI-MAMMA`:
    `git clone https://github.com/rethink-studios/ComfyUI-MAMMA.git`
 2. Clone [MAMMA](https://github.com/cuevhv/mamma) somewhere local (not a network share)
 3. Run `scripts\install_env.bat` (patches MAMMA + builds env, ~20–40 min)
-4. Register and download gated weights — see [docs/WEIGHTS.md](docs/WEIGHTS.md)
+4. **Gated weights (required)** — [GATED_WEIGHTS.md](GATED_WEIGHTS.md) → `scripts\download_gated_weights.bat`
 5. Run `scripts\doctor.bat` — should report PASS
 6. Open `example_workflows/MAMMA Render.json`, set **mamma_repo** on each node, queue
 
@@ -31,7 +44,7 @@ PyTorch 2.5) managed by this node pack. Your ComfyUI install is not modified.
 | [Visual Studio Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/) | "Desktop development with C++" workload (one-time, for detectron2 compile) |
 | MAMMA repo clone | `git clone https://github.com/cuevhv/mamma.git` |
 | Disk space | ~15–20 GB (env + weights + outputs) |
-| Two free accounts | MAMMA + SMPL-X registrations for gated weights — [docs/WEIGHTS.md](docs/WEIGHTS.md) |
+| Two free accounts | **Required** — [GATED_WEIGHTS.md](GATED_WEIGHTS.md) (MAMMA + SMPL-X) |
 
 ## Installation
 

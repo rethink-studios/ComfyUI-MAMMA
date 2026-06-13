@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: "Download gated weights (required — read this first)"
+    url: https://github.com/rethink-studios/ComfyUI-MAMMA/blob/main/GATED_WEIGHTS.md
+    about: Step-by-step MAMMA + SMPL-X registration and download — install alone is not enough
+  - name: Troubleshooting guide
+    url: https://github.com/rethink-studios/ComfyUI-MAMMA/blob/main/docs/TROUBLESHOOTING.md
+    about: Crashes, cancel, export, doctor failures
+  - name: Full weight inventory
+    url: https://github.com/rethink-studios/ComfyUI-MAMMA/blob/main/docs/WEIGHTS.md
+    about: All checkpoints, sizes, and license notes
